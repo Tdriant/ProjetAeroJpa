@@ -22,7 +22,6 @@ public class Aeroport {
 	private int version;
 
 	public Aeroport(String nom, Integer id) {
-		super();
 		this.nom = nom;
 		this.id = id;
 	}
