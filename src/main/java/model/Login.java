@@ -15,13 +15,13 @@ import javax.persistence.Version;
 public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqLogin")
-	@Column(name = "id_login")
+	@Column(name = "login_id")
 	private Integer id;
-	@Column(name = "login", length = 50)
+	@Column(name = "login_login", length = 50)
 	private String login;
-	@Column(name = "mot_de_passe", length = 50)
+	@Column(name = "login_mdp", length = 50)
 	private String motDePasse;
-	@Column(name = "admin", length = 50)
+	@Column(name = "login_admin", length = 50)
 	private boolean admin;
 	@Version
 	private int version;
