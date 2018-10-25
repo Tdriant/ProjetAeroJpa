@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import model.Aeroport;
 import model.Ville;
 import util.Context;
 
@@ -73,11 +72,11 @@ public class DaoVilleJpaImpl implements DaoVille {
 			tx = em.getTransaction();
 			tx.begin();
 			obj = em.merge(obj);
-			for (Aeroport a : obj.getAeroports()) {// A enlever ?
-				System.out.println(a);
-				em.remove(a);
-			}
-			em.remove(em.merge(obj));
+//			for (Aeroport a : obj.getAeroports()) {// A enlever ?
+//				System.out.println(a);
+//				em.remove(a);
+//			}
+			em.remove(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
