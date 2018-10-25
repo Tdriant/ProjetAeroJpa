@@ -15,7 +15,7 @@ import javax.persistence.Version;
 public class Ville {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqVille")
-	private Integer id;
+	private Integer vill_id;
 	@Column(name = "ville", length = 150)
 	private String nom;
 	@Version
@@ -26,10 +26,9 @@ public class Ville {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ville(String nom, Integer id) {
+	public Ville(String nom) {
 		super();
 		this.nom = nom;
-		this.id = id;
 	}
 
 	public String getNom() {
@@ -41,18 +40,18 @@ public class Ville {
 	}
 
 	public Integer getId() {
-		return id;
+		return vill_id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.vill_id = id;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((vill_id == null) ? 0 : vill_id.hashCode());
 		return result;
 	}
 
@@ -65,10 +64,10 @@ public class Ville {
 		if (getClass() != obj.getClass())
 			return false;
 		Ville other = (Ville) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (vill_id == null) {
+			if (other.vill_id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!vill_id.equals(other.vill_id))
 			return false;
 		return true;
 	}

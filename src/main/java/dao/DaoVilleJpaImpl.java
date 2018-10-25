@@ -116,7 +116,7 @@ public class DaoVilleJpaImpl implements DaoVille {
 	@Override
 	public List<Ville> findAll() {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Villes v");
+		Query query = em.createQuery("from Ville v");
 		List<Ville> villes = null;
 		villes = query.getResultList();
 		em.close();
