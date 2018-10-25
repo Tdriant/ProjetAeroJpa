@@ -108,9 +108,10 @@ public class DaoAeroportJpaImpl implements DaoAeroport {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Aeroport> findAll() {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Aeroports a");
+		Query query = em.createQuery("from Aeroport a");
 		List<Aeroport> aeroports = null;
 		aeroports = query.getResultList();
 		em.close();

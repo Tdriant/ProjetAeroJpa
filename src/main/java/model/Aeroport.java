@@ -15,15 +15,14 @@ import javax.persistence.Version;
 public class Aeroport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAeroport")
-	private Integer id;
+	private Integer aero_id;
 	@Column(name = "aeroport", length = 150)
 	private String nom;
 	@Version
 	private int version;
 
-	public Aeroport(String nom, Integer id) {
+	public Aeroport(String nom) {
 		this.nom = nom;
-		this.id = id;
 	}
 
 	public Aeroport() {
@@ -40,18 +39,18 @@ public class Aeroport {
 	}
 
 	public Integer getId() {
-		return id;
+		return aero_id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.aero_id = id;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((aero_id == null) ? 0 : aero_id.hashCode());
 		return result;
 	}
 
@@ -64,10 +63,10 @@ public class Aeroport {
 		if (getClass() != obj.getClass())
 			return false;
 		Aeroport other = (Aeroport) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (aero_id == null) {
+			if (other.aero_id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!aero_id.equals(other.aero_id))
 			return false;
 		return true;
 	}
