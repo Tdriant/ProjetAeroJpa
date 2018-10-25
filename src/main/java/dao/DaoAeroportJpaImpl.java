@@ -7,10 +7,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.Aeroport;
-import model.Ville;
 import util.Context;
 
-public class DaoAeroportJpaImpl implements DaoAeroport{
+public class DaoAeroportJpaImpl implements DaoAeroport {
 
 	public void create(Aeroport obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
@@ -33,14 +32,12 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 
 	}
 
-
 	public Aeroport findByKey(Integer key) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		Aeroport a = null;
 		a = em.find(Aeroport.class, key);
 		return a;
 	}
-
 
 	public Aeroport update(Aeroport obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
@@ -64,7 +61,6 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 		return a;
 	}
 
-
 	public void delete(Aeroport obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
@@ -72,11 +68,11 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 			tx = em.getTransaction();
 			tx.begin();
 			obj = em.merge(obj);
-			for (Ville v : obj.getVilles()) {// A enlever ?
-				System.out.println(v);
-				em.remove(v);
-			}
-			em.remove(em.merge(obj));
+//			for (Ville v : obj.getVilles()) {// A enlever ?
+//				System.out.println(v);
+//				em.remove(v);
+//			}
+			em.remove(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,7 +86,6 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 		}
 
 	}
-
 
 	public void deleteByKey(Integer key) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
@@ -112,7 +107,6 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 		}
 
 	}
-
 
 	public List<Aeroport> findAll() {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
