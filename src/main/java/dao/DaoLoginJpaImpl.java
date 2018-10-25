@@ -106,7 +106,6 @@ public class DaoLoginJpaImpl implements DaoLogin {
 		}
 	}
 
-
 	@Override
 	public List<Login> findAll() {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
