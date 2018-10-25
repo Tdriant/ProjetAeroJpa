@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "adherent")
+@Table(name = "adresse")
 @SequenceGenerator(name = "seqAdresse", sequenceName = "adre_seq_id", initialValue = 50, allocationSize = 1)
 public class Adresse {
 	// attributs
