@@ -12,7 +12,7 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", initialValue = 1, allocationSize = 10)
-public abstract class Client {
+public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")
 	@Column(name = "client_id")

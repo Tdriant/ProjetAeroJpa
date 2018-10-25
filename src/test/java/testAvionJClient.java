@@ -28,27 +28,27 @@ public class testAvionJClient {
 
 	@Test
 	public void insert() {
-		Client client = new Cli;
-		daoClient.create(Client);
-		assertNotNull(Client.getId());
+		Client client = new Client("tutu", 2022222222, 5284, "dlnvoqizsvb");
+		daoClient.create(client);
+		assertNotNull(client.getId());
 		
 	}
 
 	@Test
 	public void findByKey() {
-		Client Client = new Client("toto", "tata", true);
-		daoClient.create(Client);
-		assertNotNull(daoClient.findByKey(Client.getId()));
+		Client client = new Client("tutu", 2022222222, 5284, "dlnvoqizsvb");
+		daoClient.create(client);
+		assertNotNull(daoClient.findByKey(client.getId()));
 	}
 
 	@Test
 	public void update() {
-		Client Client = new Client("tutu", "huhuhu", true);
-		daoClient.create(Client);
-		Client = daoClient.findByKey(Client.getId());
-		Client.setClient("coco");
-		daoClient.update(Client);
-		assertEquals("coco", daoClient.findByKey(Client.getId()).getClient());
+		Client client = new Client("tutu", 2022222222, 5284, "dlnvoqizsvb");
+		daoClient.create(client);
+		client = daoClient.findByKey(client.getId());
+		client.setNom("coco");
+		daoClient.update(client);
+		assertEquals("coco", daoClient.findByKey(client.getId()).getNom());
 	}
 
 	@Test
@@ -58,19 +58,19 @@ public class testAvionJClient {
 
 	@Test
 	public void delete() {
-		Client Client = new Client("toto", "tata", true);
-		daoClient.create(Client);
-		daoClient.delete(Client);
-		assertNull(daoClient.findByKey(Client.getId()));
+		Client client = new Client("tutu", 2022222222, 5284, "dlnvoqizsvb");
+		daoClient.create(client);
+		daoClient.delete(client);
+		assertNull(daoClient.findByKey(client.getId()));
 
 	}
 
 	@Test
 	public void deleteByKey() {
-		Client Client = new Client("toto", "tata", true);
-		daoClient.create(Client);
-		daoClient.deleteByKey(Client.getId());
-		assertNull(daoClient.findByKey(Client.getId()));
+		Client client = new Client("tutu", 2022222222, 5284, "dlnvoqizsvb");
+		daoClient.create(client);
+		daoClient.deleteByKey(client.getId());
+		assertNull(daoClient.findByKey(client.getId()));
 
 	}
 
