@@ -49,33 +49,33 @@ public class TestAdresse {
 		a3 = new Adresse(25, "rue Adrien Damalix", "94410", "Saint-Maurice", "Espagne");
 		daoadresse.create(a3);
 		a3 = daoadresse.findByKey(a3.getId());
-		a3.setCodePostal("joinville-le-pont");
+		a3.setCodePostal("94850");
 		daoadresse.update(a3);
-		assertEquals("joinville-le-pont", daoadresse.findByKey(a3.getId()).getCodePostal());
+		assertEquals("94850", daoadresse.findByKey(a3.getId()).getCodePostal());
 	}
 
-//	@Test
-//	public void findAll() {
-//		assertNotNull(daoRealisateur.findAll());
-//	}
-//
-//	@Test
-//	public void delete() {
-//		Realisateur ryan;
-//		ryan = new Realisateur("ryan", "johnson");
-//		daoRealisateur.create(ryan);
-//		daoRealisateur.delete(ryan);
-//		assertNull(daoRealisateur.findByKey(ryan.getId()));
-//	}
-//
-//	@Test
-//	public void deleteByKey() {
-//		Realisateur ryan;
-//		ryan = new Realisateur("ryan", "johnson");
-//		daoRealisateur.create(ryan);
-//		daoRealisateur.create(ryan);
-//		daoRealisateur.deleteByKey(ryan.getId());
-//		assertNull(daoRealisateur.findByKey(ryan.getId()));
-//
-//	}
+	@Test
+	public void findAll() {
+		assertNotNull(daoadresse.findAll());
+	}
+
+	@Test
+	public void delete() {
+		Adresse a4;
+		a4 = new Adresse(95, "rue du four", "77055", "Creil", "Finlande");
+		daoadresse.create(a4);
+		daoadresse.delete(a4);
+		assertNull(daoadresse.findByKey(a4.getId()));
+	}
+
+	@Test
+	public void deleteByKey() {
+		Adresse a5;
+		a5 = new Adresse(155, "rue du sport", "93420", "Bobigny", "Equateur");
+		daoadresse.create(a5);
+		daoadresse.create(a5);
+		daoadresse.deleteByKey(a5.getId());
+		assertNull(daoadresse.findByKey(a5.getId()));
+
+	}
 }
