@@ -11,7 +11,6 @@ import dao.DaoClient;
 import dao.DaoClientFactory;
 import dao.DaoLogin;
 import dao.DaoLoginFactory;
-import formationJpa.model.Stagiaire;
 import model.Client;
 import model.ClientEI;
 import model.Login;
