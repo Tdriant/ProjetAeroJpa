@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class VilleAeroportKey implements Serializable {
 	@ManyToOne
@@ -20,7 +21,6 @@ public class VilleAeroportKey implements Serializable {
 	}
 
 	public VilleAeroportKey(Ville ville, Aeroport aeroport) {
-		super();
 		this.ville = ville;
 		this.aeroport = aeroport;
 	}
@@ -40,6 +40,7 @@ public class VilleAeroportKey implements Serializable {
 	public void setAeroport(Aeroport aeroport) {
 		this.aeroport = aeroport;
 	}
+	
 
 	@Override
 	public int hashCode() {
