@@ -52,46 +52,46 @@ public class DaoVilleAeroportTest {
 
 	}
 
-	@Test
-	public void insert() {
-		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
-
-		assertNotNull(t.getKey().getAeroport());
-		assertNotNull(t.getKey().getVille());
-		daoVilleAeroport.create(t);
-
-	}
-
-	@Test
-	public void findByKey() {
-
-		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
-		daoVilleAeroport.create(t);
-		assertNotNull(daoVilleAeroport.findByKey(t.getKey()));
-
-	}
-
-	@Test
-	public void update() {
-
-		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(w, b));
-		daoVilleAeroport.create(t);
-		t = daoVilleAeroport.findByKey(t.getKey());
-		t.setKey(t.getKey());
-		daoVilleAeroport.update(t);
-		assertEquals("Key update", daoVilleAeroport.findByKey(t.getKey()));
-
-	}
-
 //	@Test
-//	public void delete() {
+//	public void insert() {
+//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
 //
-//		VilleAeroport t = new VilleAeroport();
+//		assertNotNull(t.getKey().getAeroport());
+//		assertNotNull(t.getKey().getVille());
 //		daoVilleAeroport.create(t);
-//		daoVilleAeroport.delete(t);
-//		assertNull(daoVilleAeroport.findByKey(t.getKey()));
 //
 //	}
+
+//	@Test
+//	public void findByKey() {
+//
+//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, b));
+//		daoVilleAeroport.create(t);
+//		assertNotNull(daoVilleAeroport.findByKey(t.getKey()));
+//
+//	}
+
+//	@Test
+//	public void update() {
+//
+//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
+//		daoVilleAeroport.create(t);
+//		t = daoVilleAeroport.findByKey(t.getKey());
+//		t.getKey().setAeroport(b);
+//		daoVilleAeroport.update(t);
+//		assertEquals(a, daoVilleAeroport.findByKey(t.getKey()).getKey().getAeroport());
+//
+//	}
+
+	@Test
+	public void delete() {
+
+		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
+		daoVilleAeroport.create(t);
+		daoVilleAeroport.delete(t);
+		assertNull(daoVilleAeroport.findByKey(t.getKey()));
+
+	}
 //
 //	@Test
 //	public void testJointureVilleAeroport() {
