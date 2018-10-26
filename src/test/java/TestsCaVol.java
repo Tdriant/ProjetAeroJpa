@@ -7,41 +7,34 @@ import java.text.SimpleDateFormat;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-//
-//import dao.DaoCAVol;
-//import dao.DaoCAVolFactory;
+
+import dao.DaoCAVol;
+import dao.DaoCAVolFactory;
 import dao.DaoCompagnieAerienne;
 import dao.DaoCompagnieAerienneFactory;
 import dao.DaoVol;
 import dao.DaoVolFactory;
 import model.CompagnieAerienne;
+import model.CompagnieAerienneVol;
+import model.CompagnieAerienneVolKey;
 import model.Vol;
 import util.Context;
 
 public class TestsCaVol {
 
-//	private static DaoCAVol daoCAVol;
+	private static DaoCAVol daoCAVol;
 	private static DaoVol daoVol;
 	private static DaoCompagnieAerienne daoCompagnieAerienne;
+	private static Vol v1;
+	private static Vol v2;
+	private static CompagnieAerienne ca1;
+	private static CompagnieAerienne ca2;
 
 	@BeforeClass
 	public static void initDaoCAVol() {
-//		daoCAVol = DaoCAVolFactory.getInstance();
+		daoCAVol = DaoCAVolFactory.getInstance();
 		daoVol = DaoVolFactory.getInstance();
 		daoCompagnieAerienne = DaoCompagnieAerienneFactory.getInstance();
-	}
-
-	@AfterClass
-	public static void fermeturJpa() {
-		Context.destroy();
-	}
-
-	@Test
-	public void insert() {
-		Vol v1;
-		Vol v2;
-		CompagnieAerienne ca1;
-		CompagnieAerienne ca2;
 		SimpleDateFormat date = new SimpleDateFormat("DD/MM/YYYY");
 		SimpleDateFormat heure = new SimpleDateFormat("HH-mm-ss");
 		try {
@@ -64,19 +57,29 @@ public class TestsCaVol {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-//		assertNull(v1.getId());
-//		daoCAVol.create(v1);
-//		assertNotNull(v1.getId());
 	}
 
-//	@Test
-//	public void findByKey() {
-//		Adresse a2;
-//		a2 = new Adresse(4, "rue Marc Sangnier", "94700", "Maisons-Alfort", "Ecosse");
-//		daoadresse.create(a2);
-//		assertNotNull(daoadresse.findByKey(a2.getId()));
-//	}
-//
+	@AfterClass
+	public static void fermeturJpa() {
+		Context.destroy();
+	}
+
+	@Test
+	public void insert() {
+		CompagnieAerienneVol cav1 = new CompagnieAerienneVol(new CompagnieAerienneVolKey(ca1, v1));
+		assertNotNull(cav1.getKey());
+		assertNotNull(cav1.getKey().getVol());
+		assertNotNull(cav1.getKey().getCompagnieAerienne());
+		daoCAVol.create(cav1);
+	}
+
+	@Test
+	public void findByKey() {
+		CompagnieAerienneVol cav2 = new CompagnieAerienneVol(new CompagnieAerienneVolKey(ca2, v2));
+		daoCAVol.create(cav2);
+		assertNotNull(daoCAVol.findByKey(new CompagnieAerienneVolKey(cav2.getKey().getCompagnieAerienne(), cav2.getKey().getVol())));
+	}
+
 //	@Test
 //	public void update() {
 //		Adresse a3;
