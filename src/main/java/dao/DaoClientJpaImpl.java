@@ -6,8 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
-
 import model.Client;
 import util.Context;
 
@@ -72,7 +70,9 @@ public class DaoClientJpaImpl implements DaoClient {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
-			em.remove(em.merge(obj));
+			obj = em.merge(obj);
+			em.remove(obj.getLogin());
+			em.remove(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +92,9 @@ public class DaoClientJpaImpl implements DaoClient {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
-			em.remove(em.find(Client.class, key));
+			Client obj = em.merge((em.find(Client.class, key)));
+			em.remove(obj.getLogin());
+			em.remove(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,6 +117,30 @@ public class DaoClientJpaImpl implements DaoClient {
 		clients = query.getResultList();
 		em.close();
 		return clients;
+	}
+
+	@Override
+	public List<Client> findAllWithReservation(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Client.findByKeyWithReservation");
+		List<Client> clients = query.getResultList();
+		em.close();
+		return clients;
+	}
+
+	@Override
+	public Client findByKeyWithReservation(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Client.findByKeyWithReservation");
+		query.setParameter("id", key);
+		Client client = null;
+		try {
+			client = (Client) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		em.close();
+		return client;
 	}
 
 

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -15,6 +17,8 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "passager")
+@NamedQueries({@NamedQuery(name = "Passager.findByKeyWithReservation" ,query = "select distinct p from Passager p left join fetch p.reservations" )})
+
 @SequenceGenerator(name = "seqPassager", sequenceName = "seq_passager", initialValue = 1, allocationSize = 10)
 public class Passager {
 	@Id

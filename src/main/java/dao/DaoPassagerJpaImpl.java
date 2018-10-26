@@ -6,9 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
-
 import model.Passager;
+import model.Reservation;
 import util.Context;
 
 
@@ -92,6 +91,10 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
+			Passager obj = em.merge((em.find(Passager.class, key)));
+			for (Reservation reservation :obj.getReservations()) {
+				em.remove(reservation);
+			}
 			em.remove(em.find(Passager.class, key));
 			tx.commit();
 		} catch (Exception e) {
@@ -115,6 +118,30 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		passagers = query.getResultList();
 		em.close();
 		return passagers;
+	}
+
+	@Override
+	public List<Passager> findAllWithReservation(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Passager.findByKeyWithReservation");
+		List<Passager> passagers = query.getResultList();
+		em.close();
+		return passagers;
+	}
+
+	@Override
+	public Passager findByKeyWithReservation(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Passager.findByKeyWithReservation");
+		query.setParameter("id", key);
+		Passager passager = null;
+		try {
+			passager = (Passager) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		em.close();
+		return passager;
 	}
 
 
