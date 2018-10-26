@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -25,8 +27,9 @@ public class Reservation {
 	private Integer numeroVol;
 	@Version
 	private Integer version;
-
-	
+	@ManyToOne
+	@JoinColumn(name="id_passager")
+	private Passager passager;
 	
 	 
 	public Reservation() {
@@ -34,6 +37,14 @@ public class Reservation {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Passager getPassager() {
+		return passager;
+	}
+
+	public void setPassager(Passager passager) {
+		this.passager = passager;
 	}
 
 	public void setId(Integer id) {

@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import dao.DaoClient;
 import dao.DaoClientFactory;
-import formation_jpa_model.Personne;
-import formation_jpa_model.Stagiaire;
 import model.Client;
 import model.ClientEI;
 import model.ClientMoral;
