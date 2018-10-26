@@ -8,17 +8,26 @@ import javax.persistence.Table;
 @Table(name = "VilleAeroport")
 public class VilleAeroport {
 	@EmbeddedId
-	private VilleAeroport key;
+	private VilleAeroportKey key;
 
+	
+	//constructeur
 	public VilleAeroport() {
 
 	}
 
-	public VilleAeroport getKey() {
+
+	public VilleAeroport(VilleAeroportKey key) {
+		super();
+		this.key = key;
+	}
+
+//methodes
+	public VilleAeroportKey getKey() {
 		return key;
 	}
 
-	public void setKey(VilleAeroport key) {
+	public void setKey(VilleAeroportKey key) {
 		this.key = key;
 	}
 
