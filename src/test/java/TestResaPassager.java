@@ -30,7 +30,7 @@ public class TestResaPassager {
 
 	@Test
 	public void insertPassagerReservation() {
-		Reservation a1;
+		Reservation a1; 
 		Reservation a2;
 		a1 = new Reservation();
 		a2= new Reservation();
