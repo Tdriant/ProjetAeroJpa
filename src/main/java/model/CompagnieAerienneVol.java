@@ -9,24 +9,24 @@ import javax.persistence.Table;
 public class CompagnieAerienneVol {
 	// attributs
 	@EmbeddedId
-	private CompagnieAerienneVol key;
+	private CompagnieAerienneVolKey key;
 
 	// contructeurs
 	public CompagnieAerienneVol() {
 
 	}
 
-	public CompagnieAerienneVol(CompagnieAerienneVol key) {
+	public CompagnieAerienneVol(CompagnieAerienneVolKey key) {
 		this.key = key;
 	}
 
 	// getters
-	public CompagnieAerienneVol getKey() {
+	public CompagnieAerienneVolKey getKey() {
 		return key;
 	}
 
 	// setters
-	public void setKey(CompagnieAerienneVol key) {
+	public void setKey(CompagnieAerienneVolKey key) {
 		this.key = key;
 	}
 
