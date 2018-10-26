@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import model.Client;
 import model.Passager;
+import model.Reservation;
 import util.Context;
 
 
@@ -92,7 +92,9 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		try {
 			tx.begin();
 			Passager obj = em.merge((em.find(Passager.class, key)));
-			em.remove(obj.getReservations());
+			for (Reservation reservation :obj.getReservations()) {
+				em.remove(reservation);
+			}
 			em.remove(em.find(Passager.class, key));
 			tx.commit();
 		} catch (Exception e) {
