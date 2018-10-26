@@ -28,10 +28,12 @@ public class Reservation {
 	@Version
 	private Integer version;
 	@ManyToOne
-	@JoinColumn(name="id_passager")
+	@JoinColumn(name = "id_passager")
 	private Passager passager;
-	
-	 
+	@ManyToOne /////////////////////////////
+	@JoinColumn(name = "id_client") //////////
+	private Client client;/////////////////
+
 	public Reservation() {
 	}
 
@@ -73,6 +75,14 @@ public class Reservation {
 
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	@Override
