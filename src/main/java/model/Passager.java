@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -28,7 +29,9 @@ public class Passager {
 	private int version;
 	@OneToMany(mappedBy="passager")
 	private List<Reservation> reservations;
-	
+	@OneToOne(mappedBy = "passager")
+	private Adresse adresse;
+
 	public Passager() {
 	}
 
@@ -84,6 +87,16 @@ public class Passager {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 	@Override

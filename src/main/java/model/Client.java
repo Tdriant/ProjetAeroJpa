@@ -3,13 +3,13 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -34,6 +34,10 @@ public abstract class Client {
 	private String email;
 	@Version
 	private int version;
+	@OneToOne(mappedBy = "client")
+	private Login login;
+//	private Adresse adresse;
+//	private Reservation reservations;
 
 	public  Client() {
 	}
@@ -92,6 +96,16 @@ public abstract class Client {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	
+	
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 	@Override

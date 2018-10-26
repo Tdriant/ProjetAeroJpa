@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -25,6 +27,9 @@ public class Login {
 	private boolean admin;
 	@Version
 	private int version;
+	@OneToOne
+	@JoinColumn(name = "client")
+	private Client client;
 
 	public Login() {
 	}
@@ -74,6 +79,15 @@ public class Login {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	@Override

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -28,8 +30,11 @@ public class Adresse {
 	private String ville;
 	@Column(name = "adhe_pays", length = 100)
 	private String pays;
-//	private Client client
-//	private Passager passager
+//	private Client client;
+	
+	@OneToOne
+	@JoinColumn(name = "adresse")
+	private Passager passager;
 	@Version
 	@Column(name = "adre_version")
 	private int version;
@@ -118,13 +123,20 @@ public class Adresse {
 //	public void setClient(Client client) {
 //		this.client = client;
 //	}
-//
-//	public void setPassager(Passager passager) {
-//		this.passager = passager;
-//	}
+
 	
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	
+
+	public Passager getPassager() {
+		return passager;
+	}
+
+	public void setPassager(Passager passager) {
+		this.passager = passager;
 	}
 
 	// methodes
