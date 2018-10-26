@@ -1,5 +1,4 @@
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -107,4 +106,16 @@ public class TestClientLogin {
 		assertNull(daoLogin.findByKey(login.getId()));
 	}
 
+	@Test
+	public void deleteClientLogin() {
+		Login login = new Login("toto", "qwerty", true);
+		Client client = new ClientEI(Titre.MME, "titi");
+		daoClient.create(client);
+		login.setClient(client);
+		daoLogin.create(login);
+		
+		daoClient.update(login.getClient());
+		daoClient.deleteByKey(client.getId());
+		assertNull(daoLogin.findByKey(login.getId()));
+	}
 }

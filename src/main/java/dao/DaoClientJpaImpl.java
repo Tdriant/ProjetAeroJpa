@@ -72,7 +72,9 @@ public class DaoClientJpaImpl implements DaoClient {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
-			em.remove(em.merge(obj));
+			obj = em.merge(obj);
+			em.remove(obj.getLogin());
+			em.remove(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +94,9 @@ public class DaoClientJpaImpl implements DaoClient {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
-			em.remove(em.find(Client.class, key));
+			Client obj = em.merge((em.find(Client.class, key)));
+			em.remove(obj.getLogin());
+			em.remove(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,6 +117,15 @@ public class DaoClientJpaImpl implements DaoClient {
 		Query query = em.createQuery("from Client Client");
 		List<Client> clients = null;
 		clients = query.getResultList();
+		em.close();
+		return clients;
+	}
+
+	@Override
+	public List<Client> findByKeyWithReservation(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Client.findByKeyWithReservation");
+		List<Client> clients = query.getResultList();
 		em.close();
 		return clients;
 	}

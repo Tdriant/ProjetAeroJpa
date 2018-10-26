@@ -30,10 +30,11 @@ public class Adresse {
 	private String ville;
 	@Column(name = "adhe_pays", length = 100)
 	private String pays;
-//	private Client client;
-	
 	@OneToOne
-	@JoinColumn(name = "adresse")
+	@JoinColumn(name = "client")
+	private Client client;
+	@OneToOne
+	@JoinColumn(name = "passager")
 	private Passager passager;
 	@Version
 	@Column(name = "adre_version")
@@ -83,16 +84,16 @@ public class Adresse {
 		return pays;
 	}
 
-//	public Client getClient() {
-//		return client;
-//	}
-//
-//	public Passager getPassager() {
-//		return passager;
-//	}
-	
 	public int getVersion() {
 		return version;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public Passager getPassager() {
+		return passager;
 	}
 
 	// setters
@@ -120,19 +121,12 @@ public class Adresse {
 		this.pays = pays;
 	}
 
-//	public void setClient(Client client) {
-//		this.client = client;
-//	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
-	
 	public void setVersion(int version) {
 		this.version = version;
-	}
-	
-	
-
-	public Passager getPassager() {
-		return passager;
 	}
 
 	public void setPassager(Passager passager) {

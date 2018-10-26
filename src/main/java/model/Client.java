@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -19,6 +21,8 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "client")
+@NamedQueries({@NamedQuery(name = "Client.findByKeyWithReservation" ,query = "select distinct c from Client c left join fetch c.reservations" )})
+
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", initialValue = 1, allocationSize = 10)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 10)
@@ -39,7 +43,8 @@ public abstract class Client {
 	private int version;
 	@OneToOne(mappedBy = "client")
 	private Login login;
-//	private Adresse adresse;
+	@OneToOne(mappedBy = "client")
+	private Adresse adresse;
 //	private Reservation reservations;
 	@OneToMany(mappedBy = "client") /////////////////////////////////
 	private Set<Reservation> reservations;/////////////
@@ -105,6 +110,14 @@ public abstract class Client {
 
 	
 	
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
 	public Login getLogin() {
 		return login;
 	}
