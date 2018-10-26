@@ -52,36 +52,36 @@ public class DaoVilleAeroportTest {
 
 	}
 
-//	@Test
-//	public void insert() {
-//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
-//
-//		assertNotNull(t.getKey().getAeroport());
-//		assertNotNull(t.getKey().getVille());
-//		daoVilleAeroport.create(t);
-//
-//	}
+	@Test
+	public void insert() {
+		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
 
-//	@Test
-//	public void findByKey() {
-//
-//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, b));
-//		daoVilleAeroport.create(t);
-//		assertNotNull(daoVilleAeroport.findByKey(t.getKey()));
-//
-//	}
+		assertNotNull(t.getKey().getAeroport());
+		assertNotNull(t.getKey().getVille());
+		daoVilleAeroport.create(t);
 
-//	@Test
-//	public void update() {
-//
-//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
-//		daoVilleAeroport.create(t);
-//		t = daoVilleAeroport.findByKey(t.getKey());
-//		t.getKey().setAeroport(b);
-//		daoVilleAeroport.update(t);
-//		assertEquals(a, daoVilleAeroport.findByKey(t.getKey()).getKey().getAeroport());
-//
-//	}
+	}
+
+	@Test
+	public void findByKey() {
+
+		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, b));
+		daoVilleAeroport.create(t);
+		assertNotNull(daoVilleAeroport.findByKey(t.getKey()));
+
+	}
+
+	@Test
+	public void update() {
+
+		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
+		daoVilleAeroport.create(t);
+		t = daoVilleAeroport.findByKey(t.getKey());
+		t.getKey().setAeroport(b);
+		daoVilleAeroport.update(t);
+		assertEquals(a, daoVilleAeroport.findByKey(t.getKey()).getKey().getAeroport());
+
+	}
 
 	@Test
 	public void delete() {
@@ -93,20 +93,20 @@ public class DaoVilleAeroportTest {
 
 	}
 
-	@Test
-	public void testJointureVilleAeroport() {
-		Ville v = new Ville();
-		v.setNom("paris");
-		daoVille.create(v);
-		Aeroport a = new Aeroport("cdg");
-		daoAeroport.create(a);
-
-		VilleAeroport villeAeroport = new VilleAeroport();
-		villeAeroport.setKey(new VilleAeroportKey(v, a));
-
-		daoVilleAeroport.create(villeAeroport);
-
-		assertNotNull(daoVilleAeroport.findByKey(villeAeroport.getKey()));
-	}
+//	@Test
+//	public void testJointureVilleAeroport() {
+//		Ville v = new Ville();
+//		v.setNom("paris");
+//		daoVille.create(v);
+//		Aeroport a = new Aeroport("cdg");
+//		daoAeroport.create(a);
+//
+//		VilleAeroport villeAeroport = new VilleAeroport();
+//		villeAeroport.setKey(new VilleAeroportKey(v, a));
+//
+//		daoVilleAeroport.create(villeAeroport);
+//
+//		assertNotNull(daoVilleAeroport.findByKey(villeAeroport.getKey()));
+//	}
 
 }
