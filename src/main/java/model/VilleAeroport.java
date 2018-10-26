@@ -10,12 +10,10 @@ public class VilleAeroport {
 	@EmbeddedId
 	private VilleAeroportKey key;
 
-	
-	//constructeur
+	// constructeur
 	public VilleAeroport() {
 
 	}
-
 
 	public VilleAeroport(VilleAeroportKey key) {
 		super();

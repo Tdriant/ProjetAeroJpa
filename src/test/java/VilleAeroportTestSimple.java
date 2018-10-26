@@ -16,13 +16,11 @@ import model.VilleAeroport;
 import model.VilleAeroportKey;
 import util.Context;
 
-
 public class VilleAeroportTestSimple {
 
 	private static DaoVilleAeroport daoVilleAeroport;
 	private static DaoVille daoVille;
 	private static DaoAeroport daoAeroport;
-	
 
 	@BeforeClass
 	public static void initDaoVilleAeroport() {
@@ -45,16 +43,15 @@ public class VilleAeroportTestSimple {
 		Ville v = new Ville();
 		v.setNom("paris");
 		daoVille.create(v);
-		Aeroport a = new Aeroport ("cdg");
+		Aeroport a = new Aeroport("cdg");
 		daoAeroport.create(a);
-		
+
 		VilleAeroport villeAeroport = new VilleAeroport();
-		villeAeroport.setKey(new VilleAeroportKey(v,a));
-		
+		villeAeroport.setKey(new VilleAeroportKey(v, a));
+
 		daoVilleAeroport.create(villeAeroport);
 
 		assertNotNull(daoVilleAeroport.findByKey(villeAeroport.getKey()));
 	}
-	
-}
 
+}
