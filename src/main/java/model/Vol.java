@@ -41,6 +41,8 @@ public class Vol {
 	private List<CompagnieAerienneVol> compagnieAerienneVols = new ArrayList<>();
 	@OneToMany(mappedBy = "vol")
 	private List<Reservation> reservations = new ArrayList<>();
+	@OneToMany(mappedBy= "id.vol")
+	private List<Escale> escales = new ArrayList<>();
 	@Version
 	private Integer version;
 
@@ -106,6 +108,14 @@ public class Vol {
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public List<Escale> getEscales() {
+		return escales;
+	}
+
+	public void setEscales(List<Escale> escales) {
+		this.escales = escales;
 	}
 
 	@Override

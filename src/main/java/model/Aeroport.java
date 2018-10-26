@@ -26,7 +26,9 @@ public class Aeroport {
 	private int version;
 	@OneToMany(mappedBy = "key.aeroport")
 	private List<VilleAeroport> villeAeroports = new ArrayList<>();// a voir si on garde l'instan arraylist
-
+	@OneToMany(mappedBy= "id.aeroport")
+	private List<Escale> escales= new ArrayList<>();
+	
 	// constructeur
 
 	public Aeroport(String nom) {
@@ -77,6 +79,14 @@ public class Aeroport {
 
 	public void setVilleAeroports(List<VilleAeroport> villeAeroports) {
 		this.villeAeroports = villeAeroports;
+	}
+
+	public List<Escale> getEscales() {
+		return escales;
+	}
+
+	public void setEscales(List<Escale> escales) {
+		this.escales = escales;
 	}
 
 	@Override
