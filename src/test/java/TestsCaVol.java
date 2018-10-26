@@ -80,39 +80,29 @@ public class TestsCaVol {
 		assertNotNull(daoCAVol.findByKey(new CompagnieAerienneVolKey(cav2.getKey().getCompagnieAerienne(), cav2.getKey().getVol())));
 	}
 
-//	@Test
-//	public void update() {
-//		Adresse a3;
-//		a3 = new Adresse(25, "rue Adrien Damalix", "94410", "Saint-Maurice", "Espagne");
-//		daoadresse.create(a3);
-//		a3 = daoadresse.findByKey(a3.getId());
-//		a3.setCodePostal("94850");
-//		daoadresse.update(a3);
-//		assertEquals("94850", daoadresse.findByKey(a3.getId()).getCodePostal());
-//	}
-//
-//	@Test
-//	public void findAll() {
-//		assertNotNull(daoadresse.findAll());
-//	}
-//
-//	@Test
-//	public void delete() {
-//		Adresse a4;
-//		a4 = new Adresse(95, "rue du four", "77055", "Creil", "Finlande");
-//		daoadresse.create(a4);
-//		daoadresse.delete(a4);
-//		assertNull(daoadresse.findByKey(a4.getId()));
-//	}
-//
-//	@Test
-//	public void deleteByKey() {
-//		Adresse a5;
-//		a5 = new Adresse(155, "rue du sport", "93420", "Bobigny", "Equateur");
-//		daoadresse.create(a5);
-//		daoadresse.create(a5);
-//		daoadresse.deleteByKey(a5.getId());
-//		assertNull(daoadresse.findByKey(a5.getId()));
-//
-//	}
+
+	@Test
+	public void findAll() {
+		assertNotNull(daoCAVol.findAll());
+	}
+
+	@Test
+	public void delete() {
+		CompagnieAerienneVol cav3 = new CompagnieAerienneVol(new CompagnieAerienneVolKey(ca1, v2));;
+		daoCAVol.create(cav3);
+		assertNotNull(daoCAVol.findByKey(new CompagnieAerienneVolKey(cav3.getKey().getCompagnieAerienne(), cav3.getKey().getVol())));
+		cav3 = daoCAVol.findByKey(cav3.getKey());
+		daoCAVol.delete(cav3);
+		assertNull(daoCAVol.findByKey(new CompagnieAerienneVolKey(cav3.getKey().getCompagnieAerienne(), cav3.getKey().getVol())));
+	}
+
+	@Test
+	public void deleteByKey() {
+	CompagnieAerienneVol cav3 = new CompagnieAerienneVol(new CompagnieAerienneVolKey(ca1, v2));;
+	daoCAVol.create(cav3);
+	assertNotNull(daoCAVol.findByKey(new CompagnieAerienneVolKey(cav3.getKey().getCompagnieAerienne(), cav3.getKey().getVol())));
+	cav3 = daoCAVol.findByKey(cav3.getKey());
+	daoCAVol.deleteByKey(cav3.getKey());
+	assertNull(daoCAVol.findByKey(new CompagnieAerienneVolKey(cav3.getKey().getCompagnieAerienne(), cav3.getKey().getVol())));
+	}
 }
