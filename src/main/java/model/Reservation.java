@@ -18,7 +18,7 @@ import javax.persistence.Version;
 public class Reservation {
 	@Id
 	@GeneratedValue(generator = "seqResa", strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_vol")
+	@Column(name = "id_reservation")
 	private Integer id;
 	@Column(name = "date_resa")
 	private Date date;
@@ -30,9 +30,12 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name = "id_passager")
 	private Passager passager;
-	@ManyToOne /////////////////////////////
-	@JoinColumn(name = "id_client") //////////
-	private Client client;/////////////////
+	@ManyToOne 
+	@JoinColumn(name = "id_client")
+	private Client client;
+	@ManyToOne
+	@JoinColumn(name = "id_vol")
+	private Vol vol;
 
 	public Reservation() {
 	}
@@ -83,6 +86,14 @@ public class Reservation {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public Vol getVol() {
+		return vol;
+	}
+
+	public void setVol(Vol vol) {
+		this.vol = vol;
 	}
 
 	@Override

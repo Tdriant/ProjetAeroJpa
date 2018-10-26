@@ -6,13 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import model.Ville;
+import model.Escale;
+import model.EscaleKey;
 import util.Context;
 
-public class DaoVilleJpaImpl implements DaoVille {
+public class DaoEscaleJpaImpl implements DaoEscale {
 
 	@Override
-	public void create(Ville obj) {
+	public void create(Escale obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -28,28 +29,29 @@ public class DaoVilleJpaImpl implements DaoVille {
 		} finally {
 			if (em != null && em.isOpen()) {
 				em.close();
+
 			}
 		}
 
 	}
 
 	@Override
-	public Ville findByKey(Integer key) {
+	public Escale findByKey(EscaleKey key) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Ville v = null;
-		v = em.find(Ville.class, key);
-		return v;
+		Escale t = null;
+		t = em.find(Escale.class, key);
+		return t;
 	}
 
 	@Override
-	public Ville update(Ville obj) {
+	public Escale update(Escale obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Ville v = null;
+		Escale t = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			v = em.merge(obj);
+			t = em.merge(obj);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,44 +63,17 @@ public class DaoVilleJpaImpl implements DaoVille {
 				em.close();
 			}
 		}
-		return v;
+		return t;
 	}
 
 	@Override
-	public void delete(Ville obj) {
+	public void delete(Escale obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			obj = em.merge(obj);
-//			for (Aeroport a : obj.getAeroports()) {// A enlever ?
-//				System.out.println(a);
-//				em.remove(a);
-//			}
-			em.remove(obj);
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		} finally {
-			if (em != null && em.isOpen()) {
-				em.close();
-			}
-		}
-
-	}
-
-	@Override
-	public void deleteByKey(Integer key) {
-		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.find(Ville.class, key));
+			em.remove(em.merge(obj));
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,39 +88,35 @@ public class DaoVilleJpaImpl implements DaoVille {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Ville> findAll() {
+	public void deleteByKey(EscaleKey key) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("from Ville v");
-		List<Ville> villes = null;
-		villes = query.getResultList();
-		em.close();
-		return villes;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Ville> findAllWithAeroport() {
-		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Query query = em.createNamedQuery("Ville.findAllWithAeroport");
-		List<Ville> villes = null;
-		villes = query.getResultList();
-		em.close();
-		return villes;
-	}
-
-	@Override
-	public Ville findByKeyWithAeroport(Integer key) {
-		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Query query = em.createNamedQuery("Ville.findByKeyWithAeroport");
-		query.setParameter("id", key);
-		Ville ville = null;
+		EntityTransaction tx = null;
 		try {
-			ville = (Ville) query.getSingleResult();
+			tx = em.getTransaction();
+			tx.begin();
+			em.remove(em.find(Escale.class, key));
+			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
 		}
+
+	}
+
+	@Override
+	public List<Escale> findAll() {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createQuery("from Escale t");
+		List<Escale> escales = null;
+		escales = query.getResultList();
 		em.close();
-		return ville;
+		return escales;
 	}
 }
