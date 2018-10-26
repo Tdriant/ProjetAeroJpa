@@ -1,10 +1,15 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -12,7 +17,9 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", initialValue = 1, allocationSize = 10)
-public class Client {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING, length=10)
+public abstract class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")
 	@Column(name = "client_id")
@@ -28,7 +35,7 @@ public class Client {
 	@Version
 	private int version;
 
-	public Client() {
+	public  Client() {
 	}
 
 	public Client(String nom, Integer numeroTelephone, Integer numeroFax, String email) {
