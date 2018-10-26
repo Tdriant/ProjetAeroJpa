@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -17,8 +20,8 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", initialValue = 1, allocationSize = 10)
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type", discriminatorType=DiscriminatorType.STRING, length=10)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING, length = 10)
 public abstract class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")
@@ -38,8 +41,10 @@ public abstract class Client {
 	private Login login;
 //	private Adresse adresse;
 //	private Reservation reservations;
+	@OneToMany(mappedBy = "client") /////////////////////////////////
+	private Set<Reservation> reservations;/////////////
 
-	public  Client() {
+	public Client() {
 	}
 
 	public Client(String nom, Integer numeroTelephone, Integer numeroFax, String email) {
@@ -106,6 +111,14 @@ public abstract class Client {
 
 	public void setLogin(Login login) {
 		this.login = login;
+	}
+
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	@Override
