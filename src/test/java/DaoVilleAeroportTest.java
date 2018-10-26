@@ -92,21 +92,21 @@ public class DaoVilleAeroportTest {
 		assertNull(daoVilleAeroport.findByKey(t.getKey()));
 
 	}
-//
-//	@Test
-//	public void testJointureVilleAeroport() {
-//		Ville v = new Ville();
-//		v.setNom("paris");
-//		daoVille.create(v);
-//		Aeroport a = new Aeroport("cdg");
-//		daoAeroport.create(a);
-//
-//		VilleAeroport villeAeroport = new VilleAeroport();
-//		villeAeroport.setKey(new VilleAeroportKey(v, a));
-//
-//		daoVilleAeroport.create(villeAeroport);
-//
-//		assertNotNull(daoVilleAeroport.findByKey(villeAeroport.getKey()));
-//	}
+
+	@Test
+	public void testJointureVilleAeroport() {
+		Ville v = new Ville();
+		v.setNom("paris");
+		daoVille.create(v);
+		Aeroport a = new Aeroport("cdg");
+		daoAeroport.create(a);
+
+		VilleAeroport villeAeroport = new VilleAeroport();
+		villeAeroport.setKey(new VilleAeroportKey(v, a));
+
+		daoVilleAeroport.create(villeAeroport);
+
+		assertNotNull(daoVilleAeroport.findByKey(villeAeroport.getKey()));
+	}
 
 }
