@@ -113,6 +113,7 @@ public class DaoVilleJpaImpl implements DaoVille {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Ville> findAll() {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
@@ -123,4 +124,28 @@ public class DaoVilleJpaImpl implements DaoVille {
 		return villes;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Ville> findAllWithAeroport() {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Ville.findAllWithAeroport");
+		List<Ville> villes = null;
+		villes = query.getResultList();
+		em.close();
+		return villes;
+	}
+
+	@Override
+	public Ville findByKeyWithAeroport(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Ville.findByKeyWithAeroport");
+		query.setParameter("id", key);
+		Ville ville = null;
+		try {
+			ville = (Ville) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		em.close();
+		return ville;
+	}
 }
