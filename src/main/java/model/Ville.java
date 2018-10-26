@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -20,7 +24,10 @@ public class Ville {
 	private String nom;
 	@Version
 	private int version;
+	@OneToMany(mappedBy = "key.ville")
+	private List<VilleAeroport> villesAeroport = new ArrayList<>();
 
+	// constructeur
 	public Ville() {
 
 		// TODO Auto-generated constructor stub
@@ -31,6 +38,7 @@ public class Ville {
 		this.nom = nom;
 	}
 
+	// methodes
 	public String getNom() {
 		return nom;
 	}
@@ -45,6 +53,30 @@ public class Ville {
 
 	public void setId(Integer id) {
 		this.vill_id = id;
+	}
+
+	public Integer getVill_id() {
+		return vill_id;
+	}
+
+	public void setVill_id(Integer vill_id) {
+		this.vill_id = vill_id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public List<VilleAeroport> getVillesAeroport() {
+		return villesAeroport;
+	}
+
+	public void setVillesAeroport(List<VilleAeroport> villesAeroport) {
+		this.villesAeroport = villesAeroport;
 	}
 
 	@Override
