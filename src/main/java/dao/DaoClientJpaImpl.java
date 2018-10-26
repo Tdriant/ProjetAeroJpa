@@ -6,8 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
-
 import model.Client;
 import util.Context;
 
@@ -122,12 +120,27 @@ public class DaoClientJpaImpl implements DaoClient {
 	}
 
 	@Override
-	public List<Client> findByKeyWithReservation(Integer key) {
+	public List<Client> findAllWithReservation(Integer key) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		Query query = em.createNamedQuery("Client.findByKeyWithReservation");
 		List<Client> clients = query.getResultList();
 		em.close();
 		return clients;
+	}
+
+	@Override
+	public Client findByKeyWithReservation(Integer key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Query query = em.createNamedQuery("Client.findByKeyWithReservation");
+		query.setParameter("id", key);
+		Client client = null;
+		try {
+			client = (Client) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		em.close();
+		return client;
 	}
 
 
