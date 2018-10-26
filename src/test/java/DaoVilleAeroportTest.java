@@ -80,8 +80,7 @@ public class DaoVilleAeroportTest {
 //		t.getKey().setAeroport(b);
 //		daoVilleAeroport.update(t);
 //		assertEquals(a, daoVilleAeroport.findByKey(t.getKey()).getKey().getAeroport());
-
-	}
+//	}
 
 	@Test
 	public void delete() {
