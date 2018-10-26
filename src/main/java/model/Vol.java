@@ -2,7 +2,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +39,8 @@ public class Vol {
 	private Date heureArrivee;
 	@OneToMany(mappedBy = "key.vol")
 	private List<CompagnieAerienneVol> compagnieAerienneVols = new ArrayList<>();
+	@OneToMany(mappedBy = "vol")
+	private List<Reservation> reservations = new ArrayList<>();
 	@Version
 	private Integer version;
 
@@ -94,6 +98,14 @@ public class Vol {
 
 	public void setCompagnieAerienneVols(List<CompagnieAerienneVol> compagnieAerienneVols) {
 		this.compagnieAerienneVols = compagnieAerienneVols;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	@Override
