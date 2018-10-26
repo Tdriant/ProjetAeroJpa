@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +35,8 @@ public class Vol {
 	@Column(name = "heure_arrivee_vol")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date heureArrivee;
+	@OneToMany(mappedBy = "key.vol")
+	private List<CompagnieAerienneVol> compagnieAerienneVols = new ArrayList<>();
 	@Version
 	private Integer version;
 
@@ -81,6 +86,14 @@ public class Vol {
 
 	public void setHeureArrivee(Date heureArrivee) {
 		this.heureArrivee = heureArrivee;
+	}
+
+	public List<CompagnieAerienneVol> getCompagnieAerienneVols() {
+		return compagnieAerienneVols;
+	}
+
+	public void setCompagnieAerienneVols(List<CompagnieAerienneVol> compagnieAerienneVols) {
+		this.compagnieAerienneVols = compagnieAerienneVols;
 	}
 
 	@Override

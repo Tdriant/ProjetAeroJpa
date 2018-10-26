@@ -10,6 +10,7 @@ public class CompagnieAerienneVol {
 	// attributs
 	@EmbeddedId
 	private CompagnieAerienneVolKey key;
+	private String numero;
 
 	// contructeurs
 	public CompagnieAerienneVol() {
@@ -25,9 +26,17 @@ public class CompagnieAerienneVol {
 		return key;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
 	// setters
 	public void setKey(CompagnieAerienneVolKey key) {
 		this.key = key;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	// methodes
