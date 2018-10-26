@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -23,7 +26,9 @@ public class Passager {
 	private String prenom;
 	@Version
 	private int version;
-
+	@OneToMany(mappedBy="passager")
+	private List<Reservation> reservations;
+	
 	public Passager() {
 	}
 
@@ -31,6 +36,22 @@ public class Passager {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
+	}
+
+
+	public void addReservation(Reservation reservation) {
+		this.reservations.add(reservation);
+	}
+	public void enleverReservation(Reservation reservation) {
+		this.reservations.remove(reservation);
+	}
+	
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	public Integer getId() {

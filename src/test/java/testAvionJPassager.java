@@ -10,6 +10,7 @@ import org.junit.Test;
 import dao.DaoPassager;
 import dao.DaoPassagerFactory;
 import model.Passager;
+import model.Reservation;
 import util.Context;
 
 
@@ -28,6 +29,7 @@ public class testAvionJPassager {
 
 	@Test
 	public void insert() {
+
 		Passager passager = new Passager("toto", "tata");
 		daoPassager.create(passager);
 		assertNotNull(passager.getId());
