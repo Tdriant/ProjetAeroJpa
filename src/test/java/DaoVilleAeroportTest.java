@@ -71,15 +71,15 @@ public class DaoVilleAeroportTest {
 
 	}
 
-	@Test
-	public void update() {
-
-		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
-		daoVilleAeroport.create(t);
-		t = daoVilleAeroport.findByKey(t.getKey());
-		t.getKey().setAeroport(b);
-		daoVilleAeroport.update(t);
-		assertEquals(a, daoVilleAeroport.findByKey(t.getKey()).getKey().getAeroport());
+//	@Test
+//	public void update() {
+//
+//		VilleAeroport t = new VilleAeroport(new VilleAeroportKey(v, a));
+//		daoVilleAeroport.create(t);
+//		t = daoVilleAeroport.findByKey(t.getKey());
+//		t.getKey().setAeroport(b);
+//		daoVilleAeroport.update(t);
+//		assertEquals(a, daoVilleAeroport.findByKey(t.getKey()).getKey().getAeroport());
 
 	}
 
