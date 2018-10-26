@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -15,6 +17,10 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "villes")
+@NamedQueries({
+@NamedQuery(name = "Ville.findAllWithAeroport", query = "select distinct v from Ville v left join fetch v.villesAeroport va left join fetch va.key.aeroport"),
+@NamedQuery(name = "Ville.findByKeyWithAeroport", query = "select distinct v from Ville v left join fetch v.villesAeroport va left join fetch va.key.aeroport where v.id = :id"),
+})
 @SequenceGenerator(name = "seqVille", sequenceName = "seq_ville", initialValue = 50, allocationSize = 1)
 public class Ville {
 	@Id
@@ -103,5 +109,4 @@ public class Ville {
 			return false;
 		return true;
 	}
-
 }
